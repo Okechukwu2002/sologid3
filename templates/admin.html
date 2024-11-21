@@ -1,3 +1,195 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Admin Dashboard</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!--    <style>-->
+<!--        /* Reset default styles */-->
+<!--        * {-->
+<!--            box-sizing: border-box;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f0f2f5;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--            min-height: 100vh;-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            color: #333;-->
+<!--            margin-bottom: 20px;-->
+<!--            font-size: 2em;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        a {-->
+<!--            text-decoration: none;-->
+<!--            color: #007bff;-->
+<!--            font-weight: bold;-->
+<!--            transition: color 0.3s;-->
+<!--        }-->
+
+<!--        a:hover {-->
+<!--            color: #0056b3;-->
+<!--        }-->
+
+<!--        /* Logout button */-->
+<!--        .logout-link {-->
+<!--            display: inline-block;-->
+<!--            margin-bottom: 20px;-->
+<!--            padding: 10px 20px;-->
+<!--            background-color: #d9534f;-->
+<!--            color: #fff;-->
+<!--            font-weight: bold;-->
+<!--            border-radius: 5px;-->
+<!--            transition: background-color 0.3s;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--        .logout-link:hover {-->
+<!--            background-color: #c9302c;-->
+<!--        }-->
+
+<!--        /* Table styling */-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            max-width: 1000px;-->
+<!--            background-color: #fff;-->
+<!--            border-collapse: collapse;-->
+<!--            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 8px;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+
+<!--        thead {-->
+<!--            background-color: #007bff;-->
+<!--            color: #fff;-->
+<!--        }-->
+
+<!--        th, td {-->
+<!--            padding: 12px 15px;-->
+<!--            text-align: center;-->
+<!--            font-size: 0.9em;-->
+<!--        }-->
+
+<!--        th {-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        tr:nth-child(even) {-->
+<!--            background-color: #f9f9f9;-->
+<!--        }-->
+
+<!--        td a {-->
+<!--            color: #007bff;-->
+<!--            font-weight: bold;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+
+<!--        td a:hover {-->
+<!--            color: #0056b3;-->
+<!--        }-->
+
+<!--        /* Responsive styling */-->
+<!--        @media (max-width: 768px) {-->
+<!--            body {-->
+<!--                padding: 10px;-->
+<!--            }-->
+
+<!--            h2 {-->
+<!--                font-size: 1.5em;-->
+<!--            }-->
+
+<!--            table {-->
+<!--                font-size: 0.8em;-->
+<!--            }-->
+
+<!--            .logout-link {-->
+<!--                padding: 8px 16px;-->
+<!--                font-size: 0.9em;-->
+<!--            }-->
+<!--        }-->
+
+<!--        @media (max-width: 500px) {-->
+<!--            table, thead, tbody, th, td, tr {-->
+<!--                display: block;-->
+<!--                width: 100%;-->
+<!--            }-->
+
+<!--            th, td {-->
+<!--                padding: 10px;-->
+<!--                text-align: left;-->
+<!--                position: relative;-->
+<!--                display: flex;-->
+<!--                justify-content: space-between;-->
+<!--            }-->
+
+<!--            td::before {-->
+<!--                content: attr(data-label);-->
+<!--                font-weight: bold;-->
+<!--                color: #555;-->
+<!--                min-width: 120px;-->
+<!--            }-->
+
+<!--            .logout-link {-->
+<!--                font-size: 0.8em;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Admin Dashboard</h2>-->
+<!--    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th>Full Name..</th>-->
+<!--                <th>State of Origin</th>-->
+<!--                <th>Country</th>-->
+<!--                <th>Gender</th>-->
+<!--                <th>Date of Birth</th>-->
+<!--                <th>Picture</th>-->
+<!--                <th>Video</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            {% for user in users %}-->
+<!--            <tr>-->
+<!--                <td data-label="Full Name">{{ user.fullname }}</td>-->
+<!--                <td data-label="State of Origin">{{ user.state_of_origin }}</td>-->
+<!--                <td data-label="Country">{{ user.country }}</td>-->
+<!--                <td data-label="Gender">{{ user.gender }}</td>-->
+<!--                <td data-label="Date of Birth">{{ user.dob }}</td>-->
+<!--                <td data-label="Picture">-->
+<!--                    {% if user.picture_path %}-->
+<!--                        <a href="{{ url_for('uploaded_file', filename=user.picture_path.split('/')[-1]) }}" target="_blank">View Picture</a>-->
+<!--                    {% else %}-->
+<!--                        No Picture-->
+<!--                    {% endif %}-->
+<!--                </td>-->
+<!--                <td data-label="Video">-->
+<!--                    {% if user.video_path %}-->
+<!--                        <a href="{{ url_for('uploaded_file', filename=user.video_path.split('/')[-1]) }}" target="_blank">View Video</a>-->
+<!--                    {% else %}-->
+<!--                        No Video-->
+<!--                    {% endif %}-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            {% endfor %}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,9 +343,12 @@
     <table>
         <thead>
             <tr>
-                <th>Full Name..</th>
+                <th>Full Name</th>
                 <th>State of Origin</th>
                 <th>Country</th>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Area of Expertise</th>
                 <th>Gender</th>
                 <th>Date of Birth</th>
                 <th>Picture</th>
@@ -166,6 +361,9 @@
                 <td data-label="Full Name">{{ user.fullname }}</td>
                 <td data-label="State of Origin">{{ user.state_of_origin }}</td>
                 <td data-label="Country">{{ user.country }}</td>
+                <td data-label="Title">{{ user.title }}</td>
+                <td data-label="Company">{{ user.company }}</td>
+                <td data-label="Area of Expertise">{{ user.area_of_expertise }}</td>
                 <td data-label="Gender">{{ user.gender }}</td>
                 <td data-label="Date of Birth">{{ user.dob }}</td>
                 <td data-label="Picture">

@@ -1,3 +1,143 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Register</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        /* Reset default browser styles */&ndash;&gt;-->
+<!--&lt;!&ndash;        * {&ndash;&gt;-->
+<!--&lt;!&ndash;            box-sizing: border-box;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 0;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;            display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;            justify-content: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            align-items: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            min-height: 100vh;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f0f2f5;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        h2 {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #333;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        form {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            max-width: 500px;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 25px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        label {&ndash;&gt;-->
+<!--&lt;!&ndash;            display: block;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #555;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 0.9em;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        input[type="text"],&ndash;&gt;-->
+<!--&lt;!&ndash;        input[type="date"],&ndash;&gt;-->
+<!--&lt;!&ndash;        input[type="file"],&ndash;&gt;-->
+<!--&lt;!&ndash;        select {&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-bottom: 15px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ddd;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1em;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        input[type="file"] {&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        input:focus,&ndash;&gt;-->
+<!--&lt;!&ndash;        select:focus {&ndash;&gt;-->
+<!--&lt;!&ndash;            border-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;            outline: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        button {&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 12px;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 1em;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;            cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;            transition: background-color 0.3s ease;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        button:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        /* Responsive styles */&ndash;&gt;-->
+<!--&lt;!&ndash;        @media (max-width: 600px) {&ndash;&gt;-->
+<!--&lt;!&ndash;            form {&ndash;&gt;-->
+<!--&lt;!&ndash;                padding: 15px;&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+
+<!--&lt;!&ndash;            h2 {&ndash;&gt;-->
+<!--&lt;!&ndash;                font-size: 1.5em;&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+
+<!--&lt;!&ndash;            label {&ndash;&gt;-->
+<!--&lt;!&ndash;                font-size: 0.85em;&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+
+<!--&lt;!&ndash;            button {&ndash;&gt;-->
+<!--&lt;!&ndash;                font-size: 0.9em;&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <form action="{{ url_for('register') }}" method="post" enctype="multipart/form-data">&ndash;&gt;-->
+<!--&lt;!&ndash;        <h2>Registration Form</h2>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="fullname">Full Name:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="text" id="fullname" name="fullname" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="state_of_origin">State of Origin:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="text" id="state_of_origin" name="state_of_origin" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="country">Country:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="text" id="country" name="country" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="gender">Gender:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <select id="gender" name="gender" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="Male">Male</option>&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="Female">Female</option>&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="Other">Other</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        </select>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="dob">Date of Birth:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="date" id="dob" name="dob" required>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="picture">Upload Picture:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="file" id="picture" name="picture" accept="image/*">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <label for="video">Upload Video:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="file" id="video" name="video" accept="video/*">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <button type="submit">Submit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
 <!--<head>-->
@@ -117,6 +257,15 @@
 <!--        <label for="country">Country:</label>-->
 <!--        <input type="text" id="country" name="country" required>-->
 
+<!--        <label for="title">Title:</label>-->
+<!--        <input type="text" id="title" name="title" placeholder="e.g., Mr., Ms., Dr.">-->
+
+<!--        <label for="company">Company:</label>-->
+<!--        <input type="text" id="company" name="company" placeholder="e.g., ABC Corporation">-->
+
+<!--        <label for="area_of_expertise">Area of Expertise:</label>-->
+<!--        <input type="text" id="area_of_expertise" name="area_of_expertise" placeholder="Short description">-->
+
 <!--        <label for="gender">Gender:</label>-->
 <!--        <select id="gender" name="gender" required>-->
 <!--            <option value="Male">Male</option>-->
@@ -137,13 +286,12 @@
 <!--    </form>-->
 <!--</body>-->
 <!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Dynamic Registration Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         /* Reset default browser styles */
@@ -185,26 +333,16 @@
             font-size: 0.9em;
         }
 
+        select,
         input[type="text"],
         input[type="date"],
-        input[type="file"],
-        select {
+        input[type="file"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1em;
-        }
-
-        input[type="file"] {
-            padding: 8px;
-        }
-
-        input:focus,
-        select:focus {
-            border-color: #007bff;
-            outline: none;
         }
 
         button {
@@ -229,18 +367,6 @@
             form {
                 padding: 15px;
             }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            label {
-                font-size: 0.85em;
-            }
-
-            button {
-                font-size: 0.9em;
-            }
         }
     </style>
 </head>
@@ -251,20 +377,18 @@
         <label for="fullname">Full Name:</label>
         <input type="text" id="fullname" name="fullname" required>
 
-        <label for="state_of_origin">State of Origin:</label>
-        <input type="text" id="state_of_origin" name="state_of_origin" required>
-
         <label for="country">Country:</label>
-        <input type="text" id="country" name="country" required>
+        <select id="country" name="country" required>
+            <option value="">Select a country</option>
+            {% for country in countries %}
+            <option value="{{ country }}">{{ country }}</option>
+            {% endfor %}
+        </select>
 
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" placeholder="e.g., Mr., Ms., Dr.">
-
-        <label for="company">Company:</label>
-        <input type="text" id="company" name="company" placeholder="e.g., ABC Corporation">
-
-        <label for="area_of_expertise">Area of Expertise:</label>
-        <input type="text" id="area_of_expertise" name="area_of_expertise" placeholder="Short description">
+        <label for="state_of_origin">State:</label>
+        <select id="state_of_origin" name="state_of_origin" required>
+            <option value="">Select a state</option>
+        </select>
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender" required>
@@ -276,6 +400,16 @@
         <label for="dob">Date of Birth:</label>
         <input type="date" id="dob" name="dob" required>
 
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="e.g., Mr., Ms., Dr.">
+
+        <label for="company">Company:</label>
+        <input type="text" id="company" name="company" placeholder="e.g., ABC Corporation">
+
+        <label for="area_of_expertise">Area of Expertise:</label>
+        <input type="text" id="area_of_expertise" name="area_of_expertise" placeholder="Short description">
+
+
         <label for="picture">Upload Picture:</label>
         <input type="file" id="picture" name="picture" accept="image/*">
 
@@ -284,5 +418,179 @@
 
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        const statesByCountry = {{ states|tojson }};
+
+        document.getElementById('country').addEventListener('change', function () {
+            const country = this.value;
+            const statesDropdown = document.getElementById('state_of_origin');
+
+            statesDropdown.innerHTML = '<option value="">Select a state</option>';
+            if (statesByCountry[country]) {
+                statesByCountry[country].forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    statesDropdown.appendChild(option);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Dynamic Registration Form</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!--    <style>-->
+<!--        /* Reset default browser styles */-->
+<!--        * {-->
+<!--            box-sizing: border-box;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            min-height: 100vh;-->
+<!--            background-color: #f0f2f5;-->
+<!--        }-->
+
+<!--        h2 {-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 20px;-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        form {-->
+<!--            background-color: #fff;-->
+<!--            max-width: 500px;-->
+<!--            width: 100%;-->
+<!--            padding: 25px;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        label {-->
+<!--            display: block;-->
+<!--            font-weight: bold;-->
+<!--            color: #555;-->
+<!--            margin-bottom: 5px;-->
+<!--            font-size: 0.9em;-->
+<!--        }-->
+
+<!--        select,-->
+<!--        input[type="text"],-->
+<!--        input[type="date"],-->
+<!--        input[type="file"] {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            margin-bottom: 15px;-->
+<!--            border: 1px solid #ddd;-->
+<!--            border-radius: 4px;-->
+<!--            font-size: 1em;-->
+<!--        }-->
+
+<!--        button {-->
+<!--            width: 100%;-->
+<!--            padding: 12px;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            font-weight: bold;-->
+<!--            font-size: 1em;-->
+<!--            border: none;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--            transition: background-color 0.3s ease;-->
+<!--        }-->
+
+<!--        button:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+
+<!--        /* Responsive styles */-->
+<!--        @media (max-width: 600px) {-->
+<!--            form {-->
+<!--                padding: 15px;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <form action="{{ url_for('register') }}" method="post" enctype="multipart/form-data">-->
+<!--        <h2>Registration Form</h2>-->
+
+<!--        <label for="fullname">Full Name:</label>-->
+<!--        <input type="text" id="fullname" name="fullname" required>-->
+
+<!--        <label for="country">Country:</label>-->
+<!--        <select id="country" name="country" required>-->
+<!--            <option value="">Select a country</option>-->
+<!--            {% for country in countries_and_states %}-->
+<!--            <option value="{{ country }}">{{ country }}</option>-->
+<!--            {% endfor %}-->
+<!--        </select>-->
+
+<!--        <label for="state_of_origin">State:</label>-->
+<!--        <select id="state_of_origin" name="state_of_origin" required>-->
+<!--            <option value="">Select a state</option>-->
+<!--        </select>-->
+
+<!--        <label for="gender">Gender:</label>-->
+<!--        <select id="gender" name="gender" required>-->
+<!--            <option value="Male">Male</option>-->
+<!--            <option value="Female">Female</option>-->
+<!--            <option value="Other">Other</option>-->
+<!--        </select>-->
+
+<!--        <label for="dob">Date of Birth:</label>-->
+<!--        <input type="date" id="dob" name="dob" required>-->
+
+<!--        <label for="title">Title:</label>-->
+<!--        <input type="text" id="title" name="title" placeholder="e.g., Mr., Ms., Dr.">-->
+
+<!--        <label for="company">Company:</label>-->
+<!--        <input type="text" id="company" name="company" placeholder="e.g., ABC Corporation">-->
+
+<!--        <label for="area_of_expertise">Area of Expertise:</label>-->
+<!--        <input type="text" id="area_of_expertise" name="area_of_expertise" placeholder="Short description">-->
+
+
+<!--        <label for="picture">Upload Picture:</label>-->
+<!--        <input type="file" id="picture" name="picture" accept="image/*">-->
+
+<!--        <label for="video">Upload Video:</label>-->
+<!--        <input type="file" id="video" name="video" accept="video/*">-->
+
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
+
+<!--    <script>-->
+
+
+<!--        document.getElementById('country').addEventListener('change', function () {-->
+<!--            const country = this.value;-->
+<!--            const statesDropdown = document.getElementById('state_of_origin');-->
+
+<!--            statesDropdown.innerHTML = '<option value="">Select a state</option>';-->
+<!--            if (statesByCountry[country]) {-->
+<!--                statesByCountry[country].forEach(state => {-->
+<!--                    const option = document.createElement('option');-->
+<!--                    option.value = state;-->
+<!--                    option.textContent = state;-->
+<!--                    statesDropdown.appendChild(option);-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
