@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Admin</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .form-feedback {
+            color: #e74c3c;
+            font-size: 14px;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            const username = document.querySelector('input[name="new_admin"]');
+            const password = document.querySelector('input[name="new_password"]');
+            const email = document.querySelector('input[name="email"]');
+            const feedback = document.querySelector('.form-feedback');
+
+            if (!username.value || !password.value || !email.value) {
+                feedback.textContent = 'All fields are required.';
+                feedback.style.display = 'block';
+                event.preventDefault();
+                return false;
+            }
+
+            if (!email.value.includes('@')) {
+                feedback.textContent = 'Please enter a valid email address.';
+                feedback.style.display = 'block';
+                event.preventDefault();
+                return false;
+            }
+
+            feedback.style.display = 'none';
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Create New Admin</h1>
+        <div class="form-feedback"></div>
+        <form method="POST" onsubmit="validateForm(event)">
+            <input type="text" name="new_admin" placeholder="New Admin Username" required>
+            <input type="password" name="new_password" placeholder="New Admin Password" required>
+            <input type="email" name="email" placeholder="New Admin Email" required>
+            <button type="submit">Create Admin</button>
+        </form>
+    </div>
+</body>
+</html>

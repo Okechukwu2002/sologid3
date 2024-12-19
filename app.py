@@ -1,281 +1,28 @@
-# # from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
-# # from werkzeug.utils import secure_filename
-# # from flask_sqlalchemy import SQLAlchemy
-# # import os
-# #
-# # app = Flask(__name__)
-# # app.secret_key = 'your_secret_key'  # Replace with a strong secret key
-# # app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'uploads')
-# # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-# # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# #
-# # db = SQLAlchemy(app)
-# #
-# # # Create the upload folder if it doesn't exist
-# # if not os.path.exists(app.config['UPLOAD_FOLDER']):
-# #     os.makedirs(app.config['UPLOAD_FOLDER'])
-# #
-# # # Admin credentials
-# # ADMIN_USERNAME = "Okechukwu"
-# # ADMIN_PASSWORD = "Ebube"
-# #
-# # # Database model for user registration data
-# # class User(db.Model):
-# #     id = db.Column(db.Integer, primary_key=True)
-# #     fullname = db.Column(db.String(100), nullable=False)
-# #     state_of_origin = db.Column(db.String(50), nullable=False)
-# #     country = db.Column(db.String(50), nullable=False)
-# #     gender = db.Column(db.String(10), nullable=False)
-# #     dob = db.Column(db.String(20), nullable=False)
-# #     picture_path = db.Column(db.String(100), nullable=True)
-# #     video_path = db.Column(db.String(100), nullable=True)
-# #
-# # # Initialize the database
-# # with app.app_context():
-# #     db.create_all()
-# #
-# # @app.route('/')
-# # def index():
-# #     return redirect(url_for('register'))
-# #
-# # @app.route('/register', methods=['GET', 'POST'])
-# # def register():
-# #     if request.method == 'POST':
-# #         # Get form data
-# #         fullname = request.form.get('fullname')
-# #         state_of_origin = request.form.get('state_of_origin')
-# #         country = request.form.get('country')
-# #         gender = request.form.get('gender')
-# #         dob = request.form.get('dob')
-# #
-# #         # Handle file uploads
-# #         picture = request.files.get('picture')
-# #         video = request.files.get('video')
-# #
-# #         picture_path = None
-# #         video_path = None
-# #
-# #         # Save picture if uploaded
-# #         if picture:
-# #             picture_filename = secure_filename(picture.filename)
-# #             picture_path = picture_filename  # Save only filename
-# #             picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
-# #
-# #         # Save video if uploaded
-# #         if video:
-# #             video_filename = secure_filename(video.filename)
-# #             video_path = video_filename  # Save only filename
-# #             video.save(os.path.join(app.config['UPLOAD_FOLDER'], video_filename))
-# #
-# #         # Create a new user record in the database
-# #         new_user = User(
-# #             fullname=fullname,
-# #             state_of_origin=state_of_origin,
-# #             country=country,
-# #             gender=gender,
-# #             dob=dob,
-# #             picture_path=picture_path,
-# #             video_path=video_path
-# #         )
-# #         db.session.add(new_user)
-# #         db.session.commit()
-# #
-# #         flash('Registration successful!')
-# #         return redirect(url_for('register'))
-# #
-# #     return render_template('register.html')
-# #
-# # @app.route('/admin_login', methods=['GET', 'POST'])
-# # def admin():
-# #     if request.method == 'POST':
-# #         username = request.form.get('username')
-# #         password = request.form.get('password')
-# #
-# #         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-# #             session['admin_logged_in'] = True
-# #             return redirect(url_for('admin_dashboard'))
-# #         else:
-# #             flash('Invalid credentials, please try again.')
-# #             return redirect(url_for('admin'))
-# #
-# #     return render_template('admin_login.html')
-# #
-# #
-# # @app.route('/admin_dashboard')
-# # def admin_dashboard():
-# #     # Check if the admin is logged in
-# #     if not session.get('admin_logged_in'):
-# #         flash('Please log in to access the admin dashboard.')
-# #         return redirect(url_for('admin'))
-# #
-# #     # Retrieve all users from the database
-# #     users = User.query.all()
-# #     return render_template('admin.html', users=users)
-# #
-# # @app.route('/logout')
-# # def logout():
-# #     session.pop('admin_logged_in', None)
-# #     flash('Logged out successfully.')
-# #     return redirect(url_for('admin'))
-# #
-# # # Serve uploaded files (pictures and videos)
-# # @app.route('/uploads/<filename>')
-# # def uploaded_file(filename):
-# #     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-# #
-# # if __name__ == '__main__':
-# #     app.run(debug=True)
-#
-#
-# from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
-# from werkzeug.utils import secure_filename
-# from flask_sqlalchemy import SQLAlchemy
-# import os
-#
-# app = Flask(__name__)
-# app.secret_key = 'your_secret_key'  # Replace with a strong secret key
-# app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'uploads')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#
-# db = SQLAlchemy(app)
-#
-# # Create the upload folder if it doesn't exist
-# if not os.path.exists(app.config['UPLOAD_FOLDER']):
-#     os.makedirs(app.config['UPLOAD_FOLDER'])
-#
-# # Admin credentials
-# ADMIN_USERNAME = "Okechukwu"
-# ADMIN_PASSWORD = "Ebube"
-#
-#
-# # Database model for user registration data
-# class User(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     fullname = db.Column(db.String(100), nullable=False)
-#     state_of_origin = db.Column(db.String(50), nullable=False)
-#     country = db.Column(db.String(50), nullable=False)
-#     gender = db.Column(db.String(10), nullable=False)
-#     dob = db.Column(db.String(20), nullable=False)
-#     title = db.Column(db.String(50), nullable=True)
-#     company = db.Column(db.String(100), nullable=True)
-#     area_of_expertise = db.Column(db.String(100), nullable=True)
-#     picture_path = db.Column(db.String(100), nullable=True)
-#     video_path = db.Column(db.String(100), nullable=True)
-#
-#
-# # Initialize the database
-# with app.app_context():
-#     db.create_all()
-#
-#
-# @app.route('/')
-# def index():
-#     return redirect(url_for('register'))
-#
-#
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         fullname = request.form.get('fullname')
-#         state_of_origin = request.form.get('state_of_origin')
-#         country = request.form.get('country')
-#         gender = request.form.get('gender')
-#         dob = request.form.get('dob')
-#         title = request.form.get('title')
-#         company = request.form.get('company')
-#         area_of_expertise = request.form.get('area_of_expertise')
-#
-#         picture = request.files.get('picture')
-#         video = request.files.get('video')
-#
-#         picture_path = None
-#         video_path = None
-#
-#         if picture:
-#             picture_filename = secure_filename(picture.filename)
-#             picture_path = picture_filename
-#             picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
-#
-#         if video:
-#             video_filename = secure_filename(video.filename)
-#             video_path = video_filename
-#             video.save(os.path.join(app.config['UPLOAD_FOLDER'], video_filename))
-#
-#         new_user = User(
-#             fullname=fullname,
-#             state_of_origin=state_of_origin,
-#             country=country,
-#             gender=gender,
-#             dob=dob,
-#             title=title,
-#             company=company,
-#             area_of_expertise=area_of_expertise,
-#             picture_path=picture_path,
-#             video_path=video_path
-#         )
-#         db.session.add(new_user)
-#         db.session.commit()
-#
-#         flash('Registration successful!')
-#         return redirect(url_for('register'))
-#
-#     return render_template('register.html')
-#
-#
-# @app.route('/admin_login', methods=['GET', 'POST'])
-# def admin():
-#     if request.method == 'POST':
-#         username = request.form.get('username')
-#         password = request.form.get('password')
-#
-#         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-#             session['admin_logged_in'] = True
-#             return redirect(url_for('admin_dashboard'))
-#         else:
-#             flash('Invalid credentials, please try again.')
-#             return redirect(url_for('admin'))
-#
-#     return render_template('admin_login.html')
-#
-#
-# @app.route('/admin_dashboard')
-# def admin_dashboard():
-#     if not session.get('admin_logged_in'):
-#         flash('Please log in to access the admin dashboard.')
-#         return redirect(url_for('admin'))
-#
-#     users = User.query.all()
-#     return render_template('admin.html', users=users)
-#
-#
-# @app.route('/logout')
-# def logout():
-#     session.pop('admin_logged_in', None)
-#     flash('Logged out successfully.')
-#     return redirect(url_for('admin'))
-#
-#
-# @app.route('/uploads/<filename>')
-# def uploaded_file(filename):
-#     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-#
-#
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-
-from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_from_directory
+from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 import os
+import random
+import string
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a strong secret key
-app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'uploads')
+
+# Email configuration
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'your_email@gmail.com'  # Replace with your email
+app.config['MAIL_PASSWORD'] = 'your_password'  # Replace with your email password
+mail = Mail(app)
+
+# Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'uploads')
 db = SQLAlchemy(app)
 
 # Create the upload folder if it doesn't exist
@@ -283,8 +30,8 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
     os.makedirs(app.config['UPLOAD_FOLDER'])
 
 # Admin credentials
-ADMIN_USERNAME = "Okechukwu"
-ADMIN_PASSWORD = "Ebube"
+admins = {'Okechukwu': generate_password_hash('Okechukwu')}
+admin_emails = {'Okechukwu': 'jetsamjoseph@gmail.com'}
 
 # Countries and states data
 countries_and_states = {
@@ -508,8 +255,7 @@ countries_and_states = {
     ]
 }
 
-
-# Database model for user registration data
+# Database model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(100), nullable=False)
@@ -527,10 +273,10 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
+# Routes
 @app.route('/')
 def index():
-    countries = list(countries_and_states.keys())
-    return render_template('register.html', countries=countries, states=countries_and_states)
+    return render_template('register.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -578,38 +324,82 @@ def register():
         flash('Registration successful!')
         return redirect(url_for('register'))
 
-    countries = list(countries_and_states.keys())
-    return render_template('register.html', countries=countries, states=countries_and_states)
+    return render_template('register.html')
 
 @app.route('/admin_login', methods=['GET', 'POST'])
-def admin():
+def admin_login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
-        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-            session['admin_logged_in'] = True
+        if username in admins and check_password_hash(admins[username], password):
+            session['admin_logged_in'] = username
             return redirect(url_for('admin_dashboard'))
         else:
             flash('Invalid credentials, please try again.')
-            return redirect(url_for('admin'))
-
     return render_template('admin_login.html')
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
-    if not session.get('admin_logged_in'):
+    if 'admin_logged_in' not in session:
         flash('Please log in to access the admin dashboard.')
-        return redirect(url_for('admin'))
+        return redirect(url_for('admin_login'))
 
     users = User.query.all()
-    return render_template('admin.html', users=users)
+    return render_template('admin_dashboard.html', users=users)
+
+@app.route('/request_code', methods=['GET', 'POST'])
+def request_code():
+    if request.method == 'POST':
+        current_admin = request.form['current_admin']
+        password = request.form['password']
+
+        if current_admin in admins and check_password_hash(admins[current_admin], password):
+            code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+            session['admin_creation_code'] = code
+
+            recipient_email = admin_emails[current_admin]
+            msg = Message('Admin Creation Code', sender=app.config['MAIL_USERNAME'], recipients=[recipient_email])
+            msg.body = f"Your admin creation code is: {code}"
+            mail.send(msg)
+
+            flash('A code has been sent to your email.', 'success')
+            return redirect(url_for('verify_code'))
+        else:
+            flash('Invalid admin credentials.', 'danger')
+    return render_template('request_code.html')
+
+@app.route('/verify_code', methods=['GET', 'POST'])
+def verify_code():
+    if request.method == 'POST':
+        code = request.form['code']
+        if session.get('admin_creation_code') == code:
+            return redirect(url_for('create_admin'))
+        else:
+            flash('Invalid code.', 'danger')
+    return render_template('verify_code.html')
+
+@app.route('/create_admin', methods=['GET', 'POST'])
+def create_admin():
+    if request.method == 'POST':
+        new_admin = request.form['new_admin']
+        new_password = request.form['new_password']
+        email = request.form['email']
+
+        if new_admin in admins:
+            flash('Admin already exists.', 'danger')
+        else:
+            admins[new_admin] = generate_password_hash(new_password)
+            admin_emails[new_admin] = email
+            flash('New admin created successfully!', 'success')
+            return redirect(url_for('admin_dashboard'))
+    return render_template('create_admin.html')
 
 @app.route('/logout')
 def logout():
     session.pop('admin_logged_in', None)
     flash('Logged out successfully.')
-    return redirect(url_for('admin'))
+    return redirect(url_for('admin_login'))
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -617,155 +407,3 @@ def uploaded_file(filename):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-# import pycountry
-# import geonamescache
-# from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
-# from werkzeug.utils import secure_filename
-# from flask_sqlalchemy import SQLAlchemy
-# import os
-#
-# # Initialize Flask app
-# app = Flask(__name__)
-# app.secret_key = 'your_secret_key'  # Replace with a strong secret key
-# app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'uploads')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#
-# db = SQLAlchemy(app)
-#
-# # Create the upload folder if it doesn't exist
-# if not os.path.exists(app.config['UPLOAD_FOLDER']):
-#     os.makedirs(app.config['UPLOAD_FOLDER'])
-#
-# # Admin credentials
-# ADMIN_USERNAME = "Okechukwu"
-# ADMIN_PASSWORD = "Ebube"
-#
-# # Initialize geonamescache
-# gc = geonamescache.GeonamesCache()
-#
-# # Database model for user registration data
-# class User(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     fullname = db.Column(db.String(100), nullable=False)
-#     state_of_origin = db.Column(db.String(50), nullable=False)
-#     country = db.Column(db.String(50), nullable=False)
-#     gender = db.Column(db.String(10), nullable=False)
-#     dob = db.Column(db.String(20), nullable=False)
-#     title = db.Column(db.String(50), nullable=True)
-#     company = db.Column(db.String(100), nullable=True)
-#     area_of_expertise = db.Column(db.String(100), nullable=True)
-#     picture_path = db.Column(db.String(100), nullable=True)
-#     video_path = db.Column(db.String(100), nullable=True)
-#
-# # Initialize the database
-# with app.app_context():
-#     db.create_all()
-#
-# def get_countries_and_states():
-#     # Retrieve the countries from pycountry
-#     countries = list(pycountry.countries)
-#     country_states = {}
-#
-#     # Retrieve the states/provinces for each country using Geonamescache
-#     for country in countries:
-#         country_code = country.alpha_2.lower()
-#         try:
-#             states = gc.get_states_by_country(country_code)
-#             country_states[country.name] = [state['name'] for state in states]
-#         except KeyError:
-#             country_states[country.name] = []
-#     return country_states
-#
-# @app.route('/')
-# def index():
-#     countries_and_states = get_countries_and_states()
-#     return render_template('register.html', countries_and_states=countries_and_states)
-#
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         fullname = request.form.get('fullname')
-#         state_of_origin = request.form.get('state_of_origin')
-#         country = request.form.get('country')
-#         gender = request.form.get('gender')
-#         dob = request.form.get('dob')
-#         title = request.form.get('title')
-#         company = request.form.get('company')
-#         area_of_expertise = request.form.get('area_of_expertise')
-#
-#         picture = request.files.get('picture')
-#         video = request.files.get('video')
-#
-#         picture_path = None
-#         video_path = None
-#
-#         if picture:
-#             picture_filename = secure_filename(picture.filename)
-#             picture_path = picture_filename
-#             picture.save(os.path.join(app.config['UPLOAD_FOLDER'], picture_filename))
-#
-#         if video:
-#             video_filename = secure_filename(video.filename)
-#             video_path = video_filename
-#             video.save(os.path.join(app.config['UPLOAD_FOLDER'], video_filename))
-#
-#         new_user = User(
-#             fullname=fullname,
-#             state_of_origin=state_of_origin,
-#             country=country,
-#             gender=gender,
-#             dob=dob,
-#             title=title,
-#             company=company,
-#             area_of_expertise=area_of_expertise,
-#             picture_path=picture_path,
-#             video_path=video_path
-#         )
-#         db.session.add(new_user)
-#         db.session.commit()
-#
-#         flash('Registration successful!')
-#         return redirect(url_for('register'))
-#
-#     countries_and_states = get_countries_and_states()
-#     return render_template('register.html', countries_and_states=countries_and_states)
-#
-# @app.route('/admin_login', methods=['GET', 'POST'])
-# def admin():
-#     if request.method == 'POST':
-#         username = request.form.get('username')
-#         password = request.form.get('password')
-#
-#         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-#             session['admin_logged_in'] = True
-#             return redirect(url_for('admin_dashboard'))
-#         else:
-#             flash('Invalid credentials, please try again.')
-#             return redirect(url_for('admin'))
-#
-#     return render_template('admin_login.html')
-#
-# @app.route('/admin_dashboard')
-# def admin_dashboard():
-#     if not session.get('admin_logged_in'):
-#         flash('Please log in to access the admin dashboard.')
-#         return redirect(url_for('admin'))
-#
-#     users = User.query.all()
-#     return render_template('admin.html', users=users)
-#
-# @app.route('/logout')
-# def logout():
-#     session.pop('admin_logged_in', None)
-#     flash('Logged out successfully.')
-#     return redirect(url_for('admin'))
-#
-# @app.route('/uploads/<filename>')
-# def uploaded_file(filename):
-#     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-#
-# if __name__ == '__main__':
-#     app.run(debug=True)

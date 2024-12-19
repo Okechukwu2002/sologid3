@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Admin Creation Code</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #007bff, #6c757d);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="password"] {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (event) => {
+                const inputs = form.querySelectorAll('input');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.style.border = '2px solid red';
+                    } else {
+                        input.style.border = 'none';
+                    }
+                });
+
+                if (!isValid) {
+                    event.preventDefault();
+                    alert('Please fill out all fields.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Request Code</h1>
+        <form method="POST">
+            <input type="text" name="current_admin" placeholder="Admin Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Request Code</button>
+        </form>
+    </div>
+</body>
+</html>

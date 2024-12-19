@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #2575fc;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1d63d9;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ffcccb;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            const codeInput = document.querySelector('input[name="code"]');
+            const message = document.querySelector('.message');
+
+            if (codeInput.value.trim() === "") {
+                event.preventDefault();
+                message.textContent = "Please enter the code.";
+            } else {
+                message.textContent = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Code</h1>
+        <form method="POST" onsubmit="validateForm(event)">
+            <input type="text" name="code" placeholder="Enter the code sent to your email" required>
+            <button type="submit">Verify Code</button>
+            <p class="message"></p>
+        </form>
+    </div>
+</body>
+</html>
